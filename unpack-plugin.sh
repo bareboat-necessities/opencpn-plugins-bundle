@@ -15,7 +15,8 @@ wget -q "$url"
 file="$(ls *.tar.gz)"
 gzip -cd "$file" | tar xvf - > "../../install_data/$name_lower".files-tmp
 file_dir="$(ls -d */ | sed 's#/##')"
-if [ -z "$file_dir" ]; then
+echo $file_dir
+if [ ! -z "$file_dir" ]; then
   if [ -d "$file_dir"/usr/local ]; then
     if [ "$(ls -A "$file_dir"/usr/local)" ]; then
       mv "${file_dir:?}"/usr/local/* .
@@ -28,6 +29,13 @@ if [ -z "$file_dir" ]; then
       mv "${file_dir:?}"/usr/* .
     fi
     rm -rf "${file_dir:?}"/usr
+  fi
+
+  if [ -d "$file_dir"/ ]; then
+    if [ "$(ls -A "$file_dir"/)" ]; then
+      mv "${file_dir:?}"/* .
+    fi
+    rm -rf "${file_dir:?}"
   fi
 fi
 
