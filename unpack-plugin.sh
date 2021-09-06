@@ -15,17 +15,35 @@ wget -q "$url"
 file="$(ls *.tar.gz)"
 gzip -cd "$file" | tar xvf - > "../../install_data/$name_lower".files-tmp
 file_dir="$(ls -d */ | sed 's#/##')"
-cp "../../install_data/$name_lower".files-tmp "../../install_data/$name_lower".dirs-tmp
+if [ -z "$file_dir" ]; then
+  if [ -d "$file_dir"/usr/local ]; then
+    if [ "$(ls -A "$file_dir"/usr/local)" ]; then
+      mv "${file_dir:?}"/usr/local/* .
+    fi
+    rm -rf "${file_dir:?}"/usr/local
+  fi
 
-sed -i '/^'"$file_dir"'\/$/d' "../../install_data/$name_lower".files-tmp
-sed -i '/^'"$file_dir"'\/usr\/$/d' "../../install_data/$name_lower".files-tmp
-sed -i '/^metadata\.xml$/d' "../../install_data/$name_lower".files-tmp
-#sed -i '/^.*\/$/d' "../../install_data/$name_lower".files-tmp
-sed -i 's#^'"$file_dir"'/usr/local/##' "../../install_data/$name_lower".files-tmp
-sed -i 's#^'"$file_dir"'/usr/##' "../../install_data/$name_lower".files-tmp
-sed -i 's#^'"$file_dir"'/##' "../../install_data/$name_lower".files-tmp
+  if [ -d "$file_dir"/usr ]; then
+    if [ "$(ls -A "$file_dir"/usr)" ]; then
+      mv "${file_dir:?}"/usr/* .
+    fi
+    rm -rf "${file_dir:?}"/usr
+  fi
+fi
 
-sed -i '/^.*\/$/!d' "../../install_data/$name_lower".dirs-tmp
+##file_dir="$(ls -d */ | sed 's#/##')"
+#file_dir=""
+#cp "../../install_data/$name_lower".files-tmp "../../install_data/$name_lower".dirs-tmp
+#
+#sed -i '/^'"$file_dir"'\/$/d' "../../install_data/$name_lower".files-tmp
+#sed -i '/^'"$file_dir"'\/usr\/$/d' "../../install_data/$name_lower".files-tmp
+#sed -i '/^metadata\.xml$/d' "../../install_data/$name_lower".files-tmp
+##sed -i '/^.*\/$/d' "../../install_data/$name_lower".files-tmp
+#sed -i 's#^'"$file_dir"'/usr/local/##' "../../install_data/$name_lower".files-tmp
+#sed -i 's#^'"$file_dir"'/usr/##' "../../install_data/$name_lower".files-tmp
+#sed -i 's#^'"$file_dir"'/##' "../../install_data/$name_lower".files-tmp
+#
+#sed -i '/^.*\/$/!d' "../../install_data/$name_lower".dirs-tmp
 
 cd ../..
 
