@@ -22,4 +22,8 @@ for dir in download_dir/*/; do
   cd ../..
 done
 
+cd bundle
+tar -czvf ../opencpn-plugins-bundle-$arch.tar.gz .
+cd ..
+
 cd ..
