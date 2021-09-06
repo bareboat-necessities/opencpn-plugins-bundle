@@ -14,9 +14,15 @@ wget -q "$url"
 
 file="$(ls *.tar.gz)"
 gzip -cd "$file" | tar xvf - > "../../install_data/$name_lower".files-tmp
+file_dir="$(ls -d */ | sed 's#/##')"
 cp "../../install_data/$name_lower".files-tmp "../../install_data/$name_lower".dirs-tmp
 
-sed -i '/^.*\/$/d' "../../install_data/$name_lower".files-tmp
+sed -i '/^'"$file_dir"'\/$/d' "../../install_data/$name_lower".files-tmp
+sed -i '/^'"$file_dir"'\/usr\/$/d' "../../install_data/$name_lower".files-tmp
+sed -i '/^metadata\.xml$/d' "../../install_data/$name_lower".files-tmp
+#sed -i '/^.*\/$/d' "../../install_data/$name_lower".files-tmp
+sed -i 's/^.*\/local\//\//' "../../install_data/$name_lower".files-tmp
+
 sed -i '/^.*\/$/!d' "../../install_data/$name_lower".dirs-tmp
 
 cd ../..
