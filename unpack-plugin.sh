@@ -8,8 +8,8 @@ url="${3}"
 mkdir -p "install_data" || exit 1
 echo "$ver" > "install_data/$name_lower".version
 
-mkdir -p "install_dir/$name_lower" || exit 2
-cd "install_dir/$name_lower"
+mkdir -p "download_dir/$name_lower" || exit 2
+cd "download_dir/$name_lower"
 wget -q "$url"
 cd ../..
 
