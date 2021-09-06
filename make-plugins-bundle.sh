@@ -10,6 +10,10 @@ rm -rf tmp-bundle-$arch || exit 1
 mkdir tmp-bundle-$arch || exit 2
 cd tmp-bundle-$arch
 
-cat ../plugin-list-$arch-buster.txt | xargs -n 3 -P 8 bash -c '../unpack-plugin.sh "$0" "$1" "$2"'
+xargs -n 3 -P 8 bash -c '../unpack-plugin.sh "$0" "$1" "$2"' < ../plugin-list-$arch-buster.txt
+
+for dir in download_dir/*/; do
+  echo $dir
+done
 
 cd ..

@@ -15,7 +15,7 @@ wget -q "$url"
 file="$(ls *.tar.gz)"
 gzip -cd "$file" | tar xvf - > "../../install_data/$name_lower".files-tmp
 file_dir="$(ls -d */ | sed 's#/##')"
-echo $file_dir
+
 if [ ! -z "$file_dir" ]; then
   if [ -d "$file_dir"/usr/local ]; then
     if [ "$(ls -A "$file_dir"/usr/local)" ]; then
