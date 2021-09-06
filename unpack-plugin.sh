@@ -17,6 +17,7 @@ gzip -cd "$file" | tar xvf - > "../../install_data/$name_lower".files-tmp
 cp "../../install_data/$name_lower".files-tmp "../../install_data/$name_lower".dirs-tmp
 
 sed -i '/^.*\/$/d' "../../install_data/$name_lower".files-tmp
+sed -i '/^.*\/$/!d' "../../install_data/$name_lower".dirs-tmp
 
 cd ../..
 
