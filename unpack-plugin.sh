@@ -21,7 +21,9 @@ sed -i '/^'"$file_dir"'\/$/d' "../../install_data/$name_lower".files-tmp
 sed -i '/^'"$file_dir"'\/usr\/$/d' "../../install_data/$name_lower".files-tmp
 sed -i '/^metadata\.xml$/d' "../../install_data/$name_lower".files-tmp
 #sed -i '/^.*\/$/d' "../../install_data/$name_lower".files-tmp
-sed -i 's/^.*\/local\//\//' "../../install_data/$name_lower".files-tmp
+sed -i 's#^'"$file_dir"'/usr/local/##' "../../install_data/$name_lower".files-tmp
+sed -i 's#^'"$file_dir"'/usr/##' "../../install_data/$name_lower".files-tmp
+sed -i 's#^'"$file_dir"'/##' "../../install_data/$name_lower".files-tmp
 
 sed -i '/^.*\/$/!d' "../../install_data/$name_lower".dirs-tmp
 
