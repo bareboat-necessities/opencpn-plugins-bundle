@@ -6,4 +6,4 @@ xmlstarlet sel -t \
  -v "str:align(concat('\"', normalize-space(name), '\"'), '                                  ')" -o ' ' \
  -v "str:align(concat('\"', normalize-space(version), '\"'), '                               ')" -o ' ' \
  -v "concat('\"', normalize-space(tarball-url), '\"')" \
- -n - | sort
+ -n - | grep -v bionic | grep -v ubuntu | sort
