@@ -23,7 +23,7 @@ for dir in download_dir/*/; do
 done
 
 cd bundle
-tar -czvf ../opencpn-plugins-bundle-o_5_6_x-$arch.tar.gz .
+tar -czvf ../opencpn-plugins-bundle-o_5_6_x-bullseye-$arch.tar.gz .
 cd ..
 
 cd ..
