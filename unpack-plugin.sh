@@ -15,7 +15,7 @@ wget -q "$url"
 file="$(ls *.tar.gz)"
 if [[ "$file" =~ .*"flatpak".* ]]; then
   echo $file
-  gzip -cd "$file" | tar --strip-components=1 xvf - > "../../install_data/$name_lower".files-tmp
+  gzip -cd "$file" | tar xvf - --strip-components=1 > "../../install_data/$name_lower".files-tmp
 else
   gzip -cd "$file" | tar xvf - > "../../install_data/$name_lower".files-tmp
 fi
