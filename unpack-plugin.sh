@@ -13,7 +13,12 @@ cd "download_dir/$name_lower"
 wget -q "$url"
 
 file="$(ls *.tar.gz)"
-gzip -cd "$file" | tar xvf - > "../../install_data/$name_lower".files-tmp
+if [[ "$file" == *"flatpak"* ]]; then
+  gzip -cd "$file" | tar xvf --strip-components=1 - > "../../install_data/$name_lower".files-tmp
+else
+  gzip -cd "$file" | tar xvf - > "../../install_data/$name_lower".files-tmp
+fi
+
 file_dir="$(ls -d */ | sed 's#/##')"
 
 if [ ! -z "$file_dir" ]; then
