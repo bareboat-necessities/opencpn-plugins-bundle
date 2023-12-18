@@ -2,7 +2,7 @@
 
 arch=arm64
 
-if [ "Z$1" == "Zarmhf" ]; then
+if [ "Z$1" = "Zarmhf" ]; then
   arch=armhf
 fi
 
