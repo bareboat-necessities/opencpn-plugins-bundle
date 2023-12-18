@@ -10,7 +10,7 @@ rm -rf tmp-bundle-$arch || exit 1
 mkdir tmp-bundle-$arch || exit 2
 cd tmp-bundle-$arch
 
-xargs -n 3 -P 8 bash -c '../unpack-plugin.sh "$0" "$1" "$2"' < ../plugin-list-o_5_8_x-$arch-bullseye.txt
+xargs -n 3 -P 8 bash -c '../unpack-plugin.sh "$0" "$1" "$2"' < ../plugin-list-o_5_8_x-$arch-bookworm.txt
 
 mkdir bundle || exit 3
 for dir in download_dir/*/; do
@@ -23,7 +23,7 @@ for dir in download_dir/*/; do
 done
 
 cd bundle
-tar -czvf ../opencpn-plugins-bundle-o_5_8_x-bullseye-$arch.tar.gz .
+tar -czvf ../opencpn-plugins-bundle-o_5_8_x-bookworm-$arch.tar.gz .
 cd ..
 
 cd ..
