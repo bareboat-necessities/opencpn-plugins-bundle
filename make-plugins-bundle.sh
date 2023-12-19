@@ -17,7 +17,7 @@ for dir in download_dir/*/; do
   cd "$dir"
   files="$(ls -I metadata.xml -I manifest.json -I *.tar.gz)"
   for file in $files; do
-    cp -r -p $file ../../bundle/
+    cp -r -p "$file" ../../bundle/
   done
   cd ../..
 done
